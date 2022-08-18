@@ -1,7 +1,9 @@
+using Infrastructure.Context;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -24,7 +26,10 @@ namespace Presentation
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson();
+
+            services.AddDbContext<RapiPayContext>(options =>
+                options.UseMySql(Configuration.GetConnectionString("Connection")));
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

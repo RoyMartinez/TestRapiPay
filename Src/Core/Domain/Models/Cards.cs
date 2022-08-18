@@ -11,6 +11,8 @@ namespace Domain.Models
         public string Numbers { get; set; }
         public string CVV { get; set; }
         public decimal Balance { get; set; }
+        public virtual ICollection<Records> Records { get; set; }
+
         public Cards() { }
         public Cards(CardTypeEnum CardType, decimal Amount) 
         {

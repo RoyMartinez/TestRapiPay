@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Domain.Models
+namespace Domain.Interfaces
 {
-    internal class User
+    public interface IBaseRepository
     {
     }
 }

@@ -6,7 +6,7 @@ namespace Domain.Primitives
 {
     public class Entity
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         public DateTime CreationTime { get; set; }
         public int UserCreatorId { get; set; }
     }

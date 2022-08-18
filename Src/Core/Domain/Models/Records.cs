@@ -5,10 +5,11 @@ using System.Text;
 
 namespace Domain.Models
 {
-    public class Records: Entity
+    public class Records : Entity
     {
         public int CardId { get; set; }
-        public decimal Payment { get; set; }
+        public string PaymentReference { get; set; }
+        public decimal Amount { get; set; }
         public decimal Fee { get; set; }
         public decimal Total { get; set; }
         public virtual Cards Card { get; set; }
