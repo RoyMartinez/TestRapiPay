@@ -5,14 +5,14 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace Infrastructure.EntityFrameworkCore.Migrations.EntityFrameworkCore
+namespace Infrastructure.EntityFrameworkCore.Migrations
 {
     [DbContext(typeof(RapidPayContext))]
-    partial class RapiPayContextModelSnapshot : ModelSnapshot
+    partial class RapidPayContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
-            #pragma warning disable 612, 618
+#pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.1.0")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
@@ -52,7 +52,7 @@ namespace Infrastructure.EntityFrameworkCore.Migrations.EntityFrameworkCore
                             Id = 1,
                             Balance = 1000000m,
                             CVV = "001",
-                            CreationTime = new DateTime(2022, 8, 18, 12, 2, 47, 369, DateTimeKind.Local).AddTicks(4367),
+                            CreationTime = new DateTime(2022, 8, 18, 12, 35, 32, 827, DateTimeKind.Local).AddTicks(6768),
                             Numbers = "400024001234567",
                             UserCreatorId = 1
                         },
@@ -61,7 +61,7 @@ namespace Infrastructure.EntityFrameworkCore.Migrations.EntityFrameworkCore
                             Id = 2,
                             Balance = 1000000m,
                             CVV = "001",
-                            CreationTime = new DateTime(2022, 8, 18, 12, 2, 47, 370, DateTimeKind.Local).AddTicks(3843),
+                            CreationTime = new DateTime(2022, 8, 18, 12, 35, 32, 828, DateTimeKind.Local).AddTicks(2625),
                             Numbers = "500024001234567",
                             UserCreatorId = 2
                         });

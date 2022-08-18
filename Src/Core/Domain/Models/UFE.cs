@@ -7,7 +7,7 @@ namespace Domain.Models
     public sealed class UFE
     {
         private int Fee;
-        private UFE()=> SetFee();
+        private UFE() => SetFee();
         
         private static UFE _instance;
 

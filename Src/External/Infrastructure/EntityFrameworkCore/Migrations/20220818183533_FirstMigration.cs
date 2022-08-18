@@ -71,8 +71,8 @@ namespace Infrastructure.EntityFrameworkCore.Migrations
                 columns: new[] { "Id", "Balance", "CVV", "CreationTime", "Numbers", "UserCreatorId" },
                 values: new object[,]
                 {
-                    { 1, 1000000m, "001", new DateTime(2022, 8, 18, 12, 2, 47, 369, DateTimeKind.Local).AddTicks(4367), "400024001234567", 1 },
-                    { 2, 1000000m, "001", new DateTime(2022, 8, 18, 12, 2, 47, 370, DateTimeKind.Local).AddTicks(3843), "500024001234567", 2 }
+                    { 1, 1000000m, "001", new DateTime(2022, 8, 18, 12, 35, 32, 827, DateTimeKind.Local).AddTicks(6768), "400024001234567", 1 },
+                    { 2, 1000000m, "001", new DateTime(2022, 8, 18, 12, 35, 32, 828, DateTimeKind.Local).AddTicks(2625), "500024001234567", 2 }
                 });
 
             migrationBuilder.InsertData(
