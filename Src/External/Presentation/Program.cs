@@ -1,5 +1,5 @@
-using Infrastructure.Context;
-using Infrastructure.Seed;
+using Infrastructure.EntityFrameworkCore.Context;
+using Infrastructure.EntityFrameworkCore.Seed;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,19 +14,6 @@ namespace Presentation
 {
     public class Program
     {
-        //public static void Main(string[] args)
-        //{
-        //    CreateHostBuilder(args).Build().Run();
-        //}
-
-        //public static IHostBuilder CreateHostBuilder(string[] args) =>
-        //    Host.CreateDefaultBuilder(args)
-        //        .ConfigureWebHostDefaults(webBuilder =>
-        //        {
-        //            webBuilder.UseStartup<Startup>();
-        //        });
-
-
         public static void Main(string[] args)
         {
             var host = CreateHostBuilder(args).Build();
@@ -42,7 +29,7 @@ namespace Presentation
                 var services = scope.ServiceProvider;
                 try
                 {
-                    var context = services.GetRequiredService<RapiPayContext>();
+                    var context = services.GetRequiredService<RapidPayContext>();
                     DataSeed.Initialize(context);
                 }
                 catch (Exception ex)
@@ -53,10 +40,10 @@ namespace Presentation
             }
         }
         public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.UseStartup<Startup>();
-                });
+        Host.CreateDefaultBuilder(args)
+            .ConfigureWebHostDefaults(webBuilder =>
+            {
+                webBuilder.UseStartup<Startup>();
+            });
     }
 }

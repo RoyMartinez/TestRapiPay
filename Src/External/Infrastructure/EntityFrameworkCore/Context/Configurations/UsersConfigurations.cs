@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Infrastructure.Context.Configurations
+namespace Infrastructure.EntityFrameworkCore.Context.Configurations
 {
     public class UsersConfigurations : IEntityTypeConfiguration<Users>
     {

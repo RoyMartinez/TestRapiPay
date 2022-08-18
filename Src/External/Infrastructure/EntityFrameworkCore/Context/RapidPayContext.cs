@@ -1,16 +1,13 @@
 ﻿using Domain.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace Infrastructure.Context
+namespace Infrastructure.EntityFrameworkCore.Context
 {
-    public class RapiPayContext:DbContext
+    public class RapidPayContext:DbContext
     {
         private readonly IConfiguration _config;
-        public RapiPayContext(IConfiguration configuration) { _config = configuration; }
+        public RapidPayContext(IConfiguration configuration) { _config = configuration; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -26,7 +23,7 @@ namespace Infrastructure.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfigurationsFromAssembly(typeof(RapiPayContext).Assembly);
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(RapidPayContext).Assembly);
         }
     }
 }

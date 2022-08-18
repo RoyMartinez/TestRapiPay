@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Infrastructure.Migrations
 {
-    [DbContext(typeof(RapiPayContext))]
+    [DbContext(typeof(RapidPayContext))]
     [Migration("20220818180247_FirstMigration")]
     partial class FirstMigration
     {
