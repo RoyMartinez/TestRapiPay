@@ -11,5 +11,6 @@ namespace Domain.Interfaces.Repositories
         void Add(T entity);
         IQueryable<T> GetAll();
         IQueryable<T> Find(Expression<Func<T, bool>> predicate);
+        void Edit(T entity);
     }
 }

@@ -29,8 +29,6 @@ namespace Presentation
             services.AddControllers()
                     .AddNewtonsoftJson();
 
-
-            
             services.AddDbContext<RapidPayContext>(options =>
                 options.UseMySql(Configuration.GetConnectionString("Connection")));
 
@@ -44,7 +42,6 @@ namespace Presentation
             services.AddScoped<IAuthenticationServices, AuthenticationServices>();
             services.AddScoped<ICardsServices, CardsServices>();
             services.AddScoped<IRecordsServices, RecordsServices>();
-
 
             //JWT
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)

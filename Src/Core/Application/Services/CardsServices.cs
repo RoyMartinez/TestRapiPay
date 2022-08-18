@@ -60,6 +60,7 @@ namespace Application.Services
             Name = card.Name,
             Numbers = card.Numbers,
             CVV = card.CVV,
+            ExpirationDate = new DateTime(card.ExpirationDate.Year, card.ExpirationDate.Month, 1),
             Balance = card.Balance,
         };
     }

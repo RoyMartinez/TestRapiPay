@@ -1,5 +1,6 @@
 ﻿using Domain.Interfaces.Repositories;
 using Infrastructure.EntityFrameworkCore.Context;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
@@ -60,6 +61,20 @@ namespace Infrastructure.EntityFrameworkCore.Repositories
                         .AsQueryable();
             }
             return query;
+        }
+
+
+        /// <summary>
+        /// Metodo que edita una entidad en la base de datos
+        /// </summary>
+        /// <param name="entity">Entidad a editar</param>
+        public async void Edit(T entity)
+        {
+            using (var _context = new RapidPayContext(_config))
+            {
+                _context.Entry(entity).State = EntityState.Modified;
+                await _context.SaveChangesAsync();
+            }
         }
     }
 }

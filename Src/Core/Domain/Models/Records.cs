@@ -1,4 +1,5 @@
-﻿using Domain.Primitives;
+﻿using Domain.Dtos;
+using Domain.Primitives;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -15,13 +16,15 @@ namespace Domain.Models
         public decimal Total { get; set; }
         public virtual Cards Card { get; set; }
 
-
-        public void Payment() 
+        public void SetRecords(RecordRequestDto requests,int UserId,int cardId) 
         {
-
-        }
-        public void Recharge() 
-        {
+            CreationTime = DateTime.Now;
+            UserCreatorId = UserId;
+            CardId = cardId;
+            RecordType = (int)requests.Type;
+            Amount = requests.Amount;
+            Fee = Amount*(UFE.GetUFE().GetFee/100);
+            Total = Amount + Fee;
         }
 
 
