@@ -20,7 +20,7 @@ namespace Presentation.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        public IActionResult Login([FromBody] LoginRequest request)
+        public IActionResult Login([FromBody] LoginRequestDto request)
         {
             if(!ModelState.IsValid)
                 return BadRequest(

@@ -7,6 +7,6 @@ namespace Domain.Interfaces.Services
 {
     public interface IAuthenticationServices
     {
-        string Login(LoginRequest request);
+        string Login(LoginRequestDto request);
     }
 }

@@ -32,6 +32,12 @@ namespace Infrastructure.EntityFrameworkCore.Migrations
                     b.Property<DateTime>("CreationTime")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<DateTime>("ExpirationDate")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
                     b.Property<string>("Numbers")
                         .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
 
@@ -52,7 +58,9 @@ namespace Infrastructure.EntityFrameworkCore.Migrations
                             Id = 1,
                             Balance = 1000000m,
                             CVV = "001",
-                            CreationTime = new DateTime(2022, 8, 18, 12, 35, 32, 827, DateTimeKind.Local).AddTicks(6768),
+                            CreationTime = new DateTime(2022, 8, 18, 14, 47, 36, 691, DateTimeKind.Local).AddTicks(9341),
+                            ExpirationDate = new DateTime(2022, 8, 19, 14, 47, 36, 692, DateTimeKind.Local).AddTicks(5808),
+                            Name = "Roy Martinez",
                             Numbers = "400024001234567",
                             UserCreatorId = 1
                         },
@@ -61,7 +69,9 @@ namespace Infrastructure.EntityFrameworkCore.Migrations
                             Id = 2,
                             Balance = 1000000m,
                             CVV = "001",
-                            CreationTime = new DateTime(2022, 8, 18, 12, 35, 32, 828, DateTimeKind.Local).AddTicks(2625),
+                            CreationTime = new DateTime(2022, 8, 18, 14, 47, 36, 692, DateTimeKind.Local).AddTicks(6194),
+                            ExpirationDate = new DateTime(2022, 8, 19, 14, 47, 36, 692, DateTimeKind.Local).AddTicks(6206),
+                            Name = "Juan Perez",
                             Numbers = "500024001234567",
                             UserCreatorId = 2
                         });
@@ -87,6 +97,9 @@ namespace Infrastructure.EntityFrameworkCore.Migrations
 
                     b.Property<string>("PaymentReference")
                         .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
+
+                    b.Property<int>("RecordType")
+                        .HasColumnType("int");
 
                     b.Property<decimal>("Total")
                         .HasColumnType("decimal(65,30)");

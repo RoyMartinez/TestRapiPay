@@ -1,4 +1,5 @@
-﻿using Domain.Enums;
+﻿using Domain.Dtos;
+using Domain.Enums;
 using Domain.Primitives;
 using System;
 using System.Collections.Generic;
@@ -8,17 +9,22 @@ namespace Domain.Models
 {
     public class Cards : Entity
     {
+        public string Name { get; set; }
         public string Numbers { get; set; }
         public string CVV { get; set; }
+        public DateTime ExpirationDate { get; set; }
         public decimal Balance { get; set; }
         public virtual ICollection<Records> Records { get; set; }
 
         public Cards() { }
-        public Cards(CardTypeEnum CardType, decimal Amount) 
+        public Cards(CardRequestDto card,int UserId) 
         {
+            UserCreatorId = UserId;
             CreationTime = DateTime.Now;
-            GenerateNumbers(CardType);
-            Balance = Amount;
+            ExpirationDate = DateTime.Now.AddDays(2);
+            Name = card.Name;
+            GenerateNumbers(card.Type);
+            Balance = card.Amount;
         }
         public void GenerateNumbers(CardTypeEnum Type)
         {

@@ -3,6 +3,7 @@ using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
 using System.Security.Claims;
 using System.Text;
 
@@ -31,7 +32,7 @@ namespace Application.Services
 
             var _Claims = new[] {
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                new Claim(JwtRegisteredClaimNames.UniqueName, UserId),
+                new Claim("UserId", UserId)
             };
 
             var _Payload = new JwtPayload(
@@ -48,6 +49,26 @@ namespace Application.Services
                 );
 
             return new JwtSecurityTokenHandler().WriteToken(_Token);
+        }
+
+
+        /// <summary>
+        /// Get the user what have send the request by the JWT
+        /// </summary>
+        /// <param name="User"></param>
+        /// <returns></returns>
+        public static string GetClaimUser(ClaimsPrincipal User)
+        {
+            try
+            {
+                var Response = User.Claims.Where(claim => claim.Type == "UserId").FirstOrDefault();
+                if (Response == null) { return "Error"; }
+                return Response.Value;
+            }
+            catch (Exception ex)
+            {
+                return $"Error: {ex.Message}";
+            }
         }
     }
 }

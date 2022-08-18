@@ -16,8 +16,10 @@ namespace Infrastructure.EntityFrameworkCore.Migrations
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     CreationTime = table.Column<DateTime>(nullable: false),
                     UserCreatorId = table.Column<int>(nullable: false),
+                    Name = table.Column<string>(nullable: true),
                     Numbers = table.Column<string>(nullable: true),
                     CVV = table.Column<string>(nullable: true),
+                    ExpirationDate = table.Column<DateTime>(nullable: false),
                     Balance = table.Column<decimal>(nullable: false)
                 },
                 constraints: table =>
@@ -50,6 +52,7 @@ namespace Infrastructure.EntityFrameworkCore.Migrations
                     CreationTime = table.Column<DateTime>(nullable: false),
                     UserCreatorId = table.Column<int>(nullable: false),
                     CardId = table.Column<int>(nullable: false),
+                    RecordType = table.Column<int>(nullable: false),
                     PaymentReference = table.Column<string>(nullable: true),
                     Amount = table.Column<decimal>(nullable: false),
                     Fee = table.Column<decimal>(nullable: false),
@@ -68,11 +71,11 @@ namespace Infrastructure.EntityFrameworkCore.Migrations
 
             migrationBuilder.InsertData(
                 table: "Cards",
-                columns: new[] { "Id", "Balance", "CVV", "CreationTime", "Numbers", "UserCreatorId" },
+                columns: new[] { "Id", "Balance", "CVV", "CreationTime", "ExpirationDate", "Name", "Numbers", "UserCreatorId" },
                 values: new object[,]
                 {
-                    { 1, 1000000m, "001", new DateTime(2022, 8, 18, 12, 35, 32, 827, DateTimeKind.Local).AddTicks(6768), "400024001234567", 1 },
-                    { 2, 1000000m, "001", new DateTime(2022, 8, 18, 12, 35, 32, 828, DateTimeKind.Local).AddTicks(2625), "500024001234567", 2 }
+                    { 1, 1000000m, "001", new DateTime(2022, 8, 18, 14, 47, 36, 691, DateTimeKind.Local).AddTicks(9341), new DateTime(2022, 8, 19, 14, 47, 36, 692, DateTimeKind.Local).AddTicks(5808), "Roy Martinez", "400024001234567", 1 },
+                    { 2, 1000000m, "001", new DateTime(2022, 8, 18, 14, 47, 36, 692, DateTimeKind.Local).AddTicks(6194), new DateTime(2022, 8, 19, 14, 47, 36, 692, DateTimeKind.Local).AddTicks(6206), "Juan Perez", "500024001234567", 2 }
                 });
 
             migrationBuilder.InsertData(

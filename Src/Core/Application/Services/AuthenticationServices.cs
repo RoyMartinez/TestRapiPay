@@ -23,7 +23,7 @@ namespace Application.Services
             _usersRepository = usersRepository;
             _configuration = configuration;
         }
-        public string Login(LoginRequest request) 
+        public string Login(LoginRequestDto request) 
         {
             try
             {
