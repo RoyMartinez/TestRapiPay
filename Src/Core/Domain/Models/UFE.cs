@@ -22,7 +22,7 @@ namespace Domain.Models
 
         public void SetFee()
         {
-            Fee = new Random().Next(1, 2);
+            Fee = new Random().Next(1, 3);
         }
         public decimal GetFee => Fee;
     }

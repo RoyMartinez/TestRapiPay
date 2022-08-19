@@ -41,6 +41,7 @@ namespace Application.Services
             try
             {
                 var card = new Cards(request, UserId);
+                card.Balance = 0;
 
                 _Cards.Add(card);
 

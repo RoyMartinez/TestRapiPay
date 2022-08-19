@@ -6,11 +6,15 @@ using Infrastructure.EntityFrameworkCore.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
+using System;
+using System.Collections.Generic;
 using System.Text;
 
 namespace Presentation
@@ -28,6 +32,7 @@ namespace Presentation
         {
             services.AddControllers()
                     .AddNewtonsoftJson();
+
 
             services.AddDbContext<RapidPayContext>(options =>
                 options.UseMySql(Configuration.GetConnectionString("Connection")));
@@ -63,6 +68,9 @@ namespace Presentation
 
             //Hosted Service
             services.AddHostedService<UFEHostedServices>();
+
+            AddSwagger(services);
+
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -74,6 +82,12 @@ namespace Presentation
 
             app.UseHttpsRedirection();
 
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "V1");
+            });
+
             app.UseRouting();
 
             app.UseAuthentication();
@@ -83,6 +97,51 @@ namespace Presentation
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+            });
+        }
+
+        private void AddSwagger(IServiceCollection services)
+        {
+            services.AddSwaggerGen(options =>
+            {
+                var groupName = "v1";
+
+                options.AddSecurityDefinition("ApiKey", new OpenApiSecurityScheme()
+                {
+                    Name = "Authorization",
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.ApiKey,
+                    Description = "Authorization by Jwt inside request's header",
+                    Scheme = "ApiKeyScheme"
+                });
+                var key = new OpenApiSecurityScheme()
+                {
+                    Reference = new OpenApiReference
+                    {
+                        Type = ReferenceType.SecurityScheme,
+                        Id = "ApiKey"
+                    },
+                    In = ParameterLocation.Header
+                };
+                var requirement = new OpenApiSecurityRequirement
+                {
+                   { key, new List<string>() }
+                };
+                options.AddSecurityRequirement(requirement);
+
+
+                options.SwaggerDoc(groupName, new OpenApiInfo
+                {
+                    Title = $" {groupName}",
+                    Version = groupName,
+                    Description = "TestRapiPay Documentation",
+                    Contact = new OpenApiContact
+                    {
+                        Name = "Roy Roger Martinez Cano",
+                        Email = string.Empty,
+                        Url = new Uri("https://TestRapiPay.com/"),
+                    }
+                });
             });
         }
     }

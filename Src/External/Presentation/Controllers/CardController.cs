@@ -21,7 +21,11 @@ namespace Presentation.Controllers
             _Card = Card;
         }
 
-
+        /// <summary>
+        /// Returns a list of Card Created by the User
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
         [Authorize]
         public IActionResult GetCards()
         {
@@ -66,6 +70,11 @@ namespace Presentation.Controllers
             }
         }
 
+        /// <summary>
+        /// Create a new Card with a Balance
+        /// </summary>
+        /// <param name="requests"></param>
+        /// <returns></returns>
         [HttpPost]
         [Authorize]
         public IActionResult Create([FromBody] CardRequestDto requests)

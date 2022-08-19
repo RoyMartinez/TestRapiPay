@@ -8,7 +8,6 @@ namespace Domain.Dtos
     public class CardRequestDto
     {
         public string Name { get; set; }
-        public decimal Amount { get; set; }
         public CardTypeEnum Type { get; set; }
     }
 }

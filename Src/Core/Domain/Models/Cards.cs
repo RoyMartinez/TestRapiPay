@@ -3,7 +3,6 @@ using Domain.Enums;
 using Domain.Primitives;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Domain.Models
 {
@@ -15,7 +14,6 @@ namespace Domain.Models
         public DateTime ExpirationDate { get; set; }
         public decimal Balance { get; set; }
         public virtual ICollection<Records> Records { get; set; }
-
         public Cards() { }
         public Cards(CardRequestDto card,int UserId) 
         {
@@ -24,7 +22,7 @@ namespace Domain.Models
             ExpirationDate = DateTime.Now.AddDays(2);
             Name = card.Name;
             GenerateNumbers(card.Type);
-            Balance = card.Amount;
+            Balance = 0;
         }
         public void GenerateNumbers(CardTypeEnum Type)
         {
