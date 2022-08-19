@@ -31,7 +31,7 @@ namespace Application.Services
                         .Find(u => u.UserName == request.UserName && u.Password == request.Password)
                         .FirstOrDefault();
                 if (user == null) return "404";
-                return Jwt.JwtToken(user.Id.ToString(), _configuration);
+                return JwtServices.JwtToken(user.Id.ToString(), _configuration);
             }
             catch (Exception ex)
             {

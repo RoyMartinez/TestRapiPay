@@ -4,6 +4,7 @@ using Domain.Interfaces.Services;
 using Domain.Dtos;
 using Application.Services;
 using System;
+using System.Threading.Tasks;
 
 namespace Presentation.Controllers
 {
@@ -11,7 +12,6 @@ namespace Presentation.Controllers
     [Route("[controller]")]
     public class TransactionController : Controller
     {
-
         private readonly IRecordsServices _Records;
         public TransactionController
         (
@@ -23,11 +23,13 @@ namespace Presentation.Controllers
 
         [HttpPost]
         [Authorize]
-        public IActionResult Create([FromBody] RecordRequestDto requests)
+        public  async Task<IActionResult> Create([FromBody] RecordRequestDto requests)
         {
+            if(!ModelState.IsValid)
+                return BadRequest(ModelState);
             try
             {
-                var Id = Jwt.GetClaimUser(User);
+                var Id = JwtServices.GetClaimUser(User);
                 if (Id.StartsWith("Error"))
                     return BadRequest(
                         new ResponseDto()
@@ -38,9 +40,7 @@ namespace Presentation.Controllers
                         });
                 var UserId = Convert.ToInt32(Id);
 
-
-
-                var response = _Records.CreateRecord(requests, UserId);
+                var response = await _Records.CreateRecord(requests, UserId);
 
                 if (!response.StartsWith("200"))
                     return BadRequest(

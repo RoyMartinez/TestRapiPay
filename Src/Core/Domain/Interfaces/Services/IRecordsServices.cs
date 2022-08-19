@@ -2,11 +2,12 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Domain.Interfaces.Services
 {
     public interface IRecordsServices
     {
-        string CreateRecord(RecordRequestDto Request, int UserId);
+        Task<string> CreateRecord(RecordRequestDto Request, int UserId);
     }
 }

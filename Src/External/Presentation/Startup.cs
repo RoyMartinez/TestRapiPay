@@ -43,7 +43,7 @@ namespace Presentation
             services.AddScoped<ICardsServices, CardsServices>();
             services.AddScoped<IRecordsServices, RecordsServices>();
 
-            //JWT
+            //Jwt Configurations
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             .AddJwtBearer(options =>
             {
@@ -60,6 +60,9 @@ namespace Presentation
                     )
                 };
             });
+
+            //Hosted Service
+            services.AddHostedService<UFEHostedServices>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

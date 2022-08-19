@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.EntityFrameworkCore.Migrations
 {
     [DbContext(typeof(RapidPayContext))]
-    [Migration("20220818215632_FirstMigration")]
-    partial class FirstMigration
+    [Migration("20220819173430_FirsMigration")]
+    partial class FirsMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -58,10 +58,10 @@ namespace Infrastructure.EntityFrameworkCore.Migrations
                         new
                         {
                             Id = 1,
-                            Balance = 1000000m,
+                            Balance = 1000m,
                             CVV = "001",
-                            CreationTime = new DateTime(2022, 8, 18, 15, 56, 32, 664, DateTimeKind.Local).AddTicks(3491),
-                            ExpirationDate = new DateTime(2022, 8, 19, 15, 56, 32, 665, DateTimeKind.Local).AddTicks(475),
+                            CreationTime = new DateTime(2022, 8, 19, 11, 34, 30, 662, DateTimeKind.Local).AddTicks(1311),
+                            ExpirationDate = new DateTime(2022, 8, 20, 11, 34, 30, 662, DateTimeKind.Local).AddTicks(8805),
                             Name = "Roy Martinez",
                             Numbers = "400024001234567",
                             UserCreatorId = 1
@@ -69,10 +69,10 @@ namespace Infrastructure.EntityFrameworkCore.Migrations
                         new
                         {
                             Id = 2,
-                            Balance = 1000000m,
+                            Balance = 1000m,
                             CVV = "001",
-                            CreationTime = new DateTime(2022, 8, 18, 15, 56, 32, 665, DateTimeKind.Local).AddTicks(824),
-                            ExpirationDate = new DateTime(2022, 8, 19, 15, 56, 32, 665, DateTimeKind.Local).AddTicks(835),
+                            CreationTime = new DateTime(2022, 8, 19, 11, 34, 30, 663, DateTimeKind.Local).AddTicks(1994),
+                            ExpirationDate = new DateTime(2022, 8, 20, 11, 34, 30, 663, DateTimeKind.Local).AddTicks(2015),
                             Name = "Juan Perez",
                             Numbers = "500024001234567",
                             UserCreatorId = 2
@@ -91,6 +91,12 @@ namespace Infrastructure.EntityFrameworkCore.Migrations
                     b.Property<int>("CardId")
                         .HasColumnType("int");
 
+                    b.Property<decimal>("CardNewBalance")
+                        .HasColumnType("decimal(65,30)");
+
+                    b.Property<decimal>("CardOldBalance")
+                        .HasColumnType("decimal(65,30)");
+
                     b.Property<DateTime>("CreationTime")
                         .HasColumnType("datetime(6)");
 
@@ -99,6 +105,9 @@ namespace Infrastructure.EntityFrameworkCore.Migrations
 
                     b.Property<string>("PaymentReference")
                         .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
+
+                    b.Property<decimal>("PercentageFee")
+                        .HasColumnType("decimal(65,30)");
 
                     b.Property<int>("RecordType")
                         .HasColumnType("int");
@@ -118,6 +127,38 @@ namespace Infrastructure.EntityFrameworkCore.Migrations
                         .HasName("Uq_Records_Reference");
 
                     b.ToTable("Records");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Amount = 1000000m,
+                            CardId = 1,
+                            CardNewBalance = 1000m,
+                            CardOldBalance = 0m,
+                            CreationTime = new DateTime(2022, 8, 19, 11, 34, 30, 670, DateTimeKind.Local).AddTicks(3986),
+                            Fee = 0m,
+                            PaymentReference = "ReferenceDataSeed1",
+                            PercentageFee = 0m,
+                            RecordType = 2,
+                            Total = 1000000m,
+                            UserCreatorId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Amount = 1000m,
+                            CardId = 2,
+                            CardNewBalance = 1000m,
+                            CardOldBalance = 0m,
+                            CreationTime = new DateTime(2022, 8, 19, 11, 34, 30, 670, DateTimeKind.Local).AddTicks(5853),
+                            Fee = 0m,
+                            PaymentReference = "ReferenceDataSeed2",
+                            PercentageFee = 0m,
+                            RecordType = 2,
+                            Total = 1000m,
+                            UserCreatorId = 2
+                        });
                 });
 
             modelBuilder.Entity("Domain.Models.Users", b =>

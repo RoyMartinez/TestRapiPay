@@ -10,7 +10,7 @@ using System.Text;
 namespace Application.Services
 {
 
-    public static class Jwt
+    public static class JwtServices
     {
         /// <summary>
         /// Generates the JWT

@@ -6,7 +6,7 @@ namespace Domain.Models
 {
     public sealed class UFE
     {
-        private int Fee;
+        private decimal Fee;
         private UFE() => SetFee();
         
         private static UFE _instance;
@@ -24,6 +24,6 @@ namespace Domain.Models
         {
             Fee = new Random().Next(1, 2);
         }
-        public int GetFee => Fee;
+        public decimal GetFee => Fee;
     }
 }

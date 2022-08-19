@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Infrastructure.EntityFrameworkCore.Migrations
 {
-    public partial class FirstMigration : Migration
+    public partial class FirsMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -56,7 +56,10 @@ namespace Infrastructure.EntityFrameworkCore.Migrations
                     PaymentReference = table.Column<string>(nullable: true),
                     Amount = table.Column<decimal>(nullable: false),
                     Fee = table.Column<decimal>(nullable: false),
-                    Total = table.Column<decimal>(nullable: false)
+                    Total = table.Column<decimal>(nullable: false),
+                    PercentageFee = table.Column<decimal>(nullable: false),
+                    CardOldBalance = table.Column<decimal>(nullable: false),
+                    CardNewBalance = table.Column<decimal>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -74,8 +77,8 @@ namespace Infrastructure.EntityFrameworkCore.Migrations
                 columns: new[] { "Id", "Balance", "CVV", "CreationTime", "ExpirationDate", "Name", "Numbers", "UserCreatorId" },
                 values: new object[,]
                 {
-                    { 1, 1000000m, "001", new DateTime(2022, 8, 18, 15, 56, 32, 664, DateTimeKind.Local).AddTicks(3491), new DateTime(2022, 8, 19, 15, 56, 32, 665, DateTimeKind.Local).AddTicks(475), "Roy Martinez", "400024001234567", 1 },
-                    { 2, 1000000m, "001", new DateTime(2022, 8, 18, 15, 56, 32, 665, DateTimeKind.Local).AddTicks(824), new DateTime(2022, 8, 19, 15, 56, 32, 665, DateTimeKind.Local).AddTicks(835), "Juan Perez", "500024001234567", 2 }
+                    { 1, 1000m, "001", new DateTime(2022, 8, 19, 11, 34, 30, 662, DateTimeKind.Local).AddTicks(1311), new DateTime(2022, 8, 20, 11, 34, 30, 662, DateTimeKind.Local).AddTicks(8805), "Roy Martinez", "400024001234567", 1 },
+                    { 2, 1000m, "001", new DateTime(2022, 8, 19, 11, 34, 30, 663, DateTimeKind.Local).AddTicks(1994), new DateTime(2022, 8, 20, 11, 34, 30, 663, DateTimeKind.Local).AddTicks(2015), "Juan Perez", "500024001234567", 2 }
                 });
 
             migrationBuilder.InsertData(
@@ -86,6 +89,16 @@ namespace Infrastructure.EntityFrameworkCore.Migrations
                     { 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "123", 0, "RoyMartinez" },
                     { 2, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "123", 0, "JuanPerez" }
                 });
+
+            migrationBuilder.InsertData(
+                table: "Records",
+                columns: new[] { "Id", "Amount", "CardId", "CardNewBalance", "CardOldBalance", "CreationTime", "Fee", "PaymentReference", "PercentageFee", "RecordType", "Total", "UserCreatorId" },
+                values: new object[] { 1, 1000000m, 1, 1000m, 0m, new DateTime(2022, 8, 19, 11, 34, 30, 670, DateTimeKind.Local).AddTicks(3986), 0m, "ReferenceDataSeed1", 0m, 2, 1000000m, 1 });
+
+            migrationBuilder.InsertData(
+                table: "Records",
+                columns: new[] { "Id", "Amount", "CardId", "CardNewBalance", "CardOldBalance", "CreationTime", "Fee", "PaymentReference", "PercentageFee", "RecordType", "Total", "UserCreatorId" },
+                values: new object[] { 2, 1000m, 2, 1000m, 0m, new DateTime(2022, 8, 19, 11, 34, 30, 670, DateTimeKind.Local).AddTicks(5853), 0m, "ReferenceDataSeed2", 0m, 2, 1000m, 2 });
 
             migrationBuilder.CreateIndex(
                 name: "Uq_Cards_Numbers",

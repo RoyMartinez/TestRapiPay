@@ -27,7 +27,7 @@ namespace Presentation.Controllers
         {
             try
             {
-                var Id = Jwt.GetClaimUser(User);
+                var Id = JwtServices.GetClaimUser(User);
                 if (Id.StartsWith("Error"))
                     return BadRequest(
                         new ResponseDto()
@@ -72,7 +72,7 @@ namespace Presentation.Controllers
         {
             try
             {
-                var Id = Jwt.GetClaimUser(User);
+                var Id = JwtServices.GetClaimUser(User);
                 if (Id.StartsWith("Error"))
                     return BadRequest(
                         new ResponseDto()
