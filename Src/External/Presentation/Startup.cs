@@ -139,7 +139,7 @@ namespace Presentation
                     {
                         Name = "Roy Roger Martinez Cano",
                         Email = string.Empty,
-                        Url = new Uri("https://TestRapiPay.com/"),
+                        Url = new Uri("https://github.com/RoyMartinez"),
                     }
                 });
             });
