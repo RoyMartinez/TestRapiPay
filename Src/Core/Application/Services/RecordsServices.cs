@@ -56,11 +56,11 @@ namespace Application.Services
         public Cards SearchCard(RecordRequestDto Request, int UserId) 
         {
             var card = _Cards.Find(c =>
-                c.Name == Request.CardName &&
-                c.Numbers == Request.CardNumbers &&
-                c.CVV == Request.CardCVV &&
-                c.ExpirationDate.Month == Request.CardExpirationDate.Month &&
-                c.ExpirationDate.Year == Request.CardExpirationDate.Year &&
+                c.Name == Request.Name &&
+                c.Numbers == Request.Numbers &&
+                c.CVV == Request.CVV &&
+                c.ExpirationDate.Month == Request.ExpirationDate.Month &&
+                c.ExpirationDate.Year == Request.ExpirationDate.Year &&
                 c.UserCreatorId == UserId 
             ).FirstOrDefault();
             return card;

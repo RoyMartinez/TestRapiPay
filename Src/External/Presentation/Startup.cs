@@ -33,7 +33,7 @@ namespace Presentation
             services.AddControllers()
                     .AddNewtonsoftJson();
 
-
+            // Registry the DbContext
             services.AddDbContext<RapidPayContext>(options =>
                 options.UseMySql(Configuration.GetConnectionString("Connection")));
 
@@ -69,6 +69,7 @@ namespace Presentation
             //Hosted Service
             services.AddHostedService<UFEHostedServices>();
 
+            //Add Swagger
             AddSwagger(services);
 
         }
@@ -139,7 +140,7 @@ namespace Presentation
                     {
                         Name = "Roy Roger Martinez Cano",
                         Email = string.Empty,
-                        Url = new Uri("https://github.com/RoyMartinez"),
+                        Url = new Uri("https://github.com/RoyMartinez3"),
                     }
                 });
             });

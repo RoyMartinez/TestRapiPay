@@ -10,8 +10,8 @@ namespace Domain.Dtos
         public string Name { get; set; }
         public string Numbers { get; set; }
         public string CVV { get; set; }
-        public string Type { get; set; }
         public DateTime ExpirationDate { get; set; }
+        public string Type { get; set; }
         public decimal Balance { get; set; }
     }
 }
