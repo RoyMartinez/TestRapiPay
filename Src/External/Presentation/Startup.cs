@@ -140,7 +140,7 @@ namespace Presentation
                     {
                         Name = "Roy Roger Martinez Cano",
                         Email = string.Empty,
-                        Url = new Uri("https://github.com/RoyMartinez3"),
+                        Url = new Uri("https://github.com/RoyMartinez"),
                     }
                 });
             });
