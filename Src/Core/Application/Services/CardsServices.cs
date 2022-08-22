@@ -68,16 +68,10 @@ namespace Application.Services
 
                 if (Card == null) return null;
 
-                var Records = _Records.Find(r => r.CardId == Card.Id)
-                              .Select(c => MapRecord(c))
-                              .OrderByDescending(c => c.Date)
-                              .AsEnumerable();
-
                 var Response = new CardBalanceResponseDto() 
                 {
                     Number = Card.Numbers,
-                    Balance = Card.Balance,
-                    Movements = Records
+                    Balance = Card.Balance
                 };
 
                 return Response;
@@ -87,6 +81,28 @@ namespace Application.Services
                 return null;
             }
         }
+
+        public IEnumerable<DetailBalanceResponseDto> GetBalanceDetail(string Numbers, int UserId)
+        {
+            try
+            {
+                var Card = _Cards.Find(c => c.Numbers == Numbers && c.UserCreatorId == UserId).FirstOrDefault();
+
+                if (Card == null) return null;
+
+                var Records = _Records.Find(r => r.CardId == Card.Id)
+                              .Select(c => MapRecord(c))
+                              .OrderByDescending(c => c.Date)
+                              .AsEnumerable();
+
+                return Records;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
 
         public CardResponseDto MapCard(Cards card) => new CardResponseDto()
         {
@@ -98,7 +114,7 @@ namespace Application.Services
             Balance = card.Balance,
         };
 
-        public RecordsResponseDto MapRecord(Records record) => new RecordsResponseDto()
+        public DetailBalanceResponseDto MapRecord(Records record) => new DetailBalanceResponseDto()
         {
             Date = record.CreationTime,
             Reference = record.PaymentReference,

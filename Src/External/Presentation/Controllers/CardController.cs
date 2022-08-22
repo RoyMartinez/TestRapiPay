@@ -144,7 +144,7 @@ namespace Presentation.Controllers
                         });
                 var UserId = Convert.ToInt32(Id);
 
-                var response = _Card.GetCardBalance(Number,UserId);
+                var response = _Card.GetCardBalance(Number, UserId);
 
 
                 if (response == null)
@@ -172,6 +172,59 @@ namespace Presentation.Controllers
                            Message = "Failed the execution",
                            content = ex.Message
                        });
+            }
+        }
+
+        /// <summary>
+        /// Returns a Card Balance based on the Card Number
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Authorize]
+        [Route("{Number}/Details")]
+        public IActionResult GetDetailBalance([FromRoute] string Number)
+        {
+            try
+            {
+                var Id = JwtServices.GetClaimUser(User);
+                if (Id.StartsWith("Error"))
+                    return BadRequest(
+                        new ResponseDto()
+                        {
+                            Success = false,
+                            Message = "The Jwt is Invalid",
+                            content = null
+                        });
+                var UserId = Convert.ToInt32(Id);
+
+                var response = _Card.GetBalanceDetail(Number, UserId);
+
+
+                if (response == null)
+                    return BadRequest(
+                        new ResponseDto()
+                        {
+                            Success = false,
+                            Message = "404 not found any Card",
+                            content = response
+                        });
+                return Ok(
+                        new ResponseDto()
+                        {
+                            Success = true,
+                            Message = "Operation executed correctly",
+                            content = response
+                        });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(
+                        new ResponseDto()
+                        {
+                            Success = false,
+                            Message = "Failed the execution",
+                            content = ex.Message
+                        });
             }
         }
     }
